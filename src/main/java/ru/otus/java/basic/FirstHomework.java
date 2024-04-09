@@ -42,7 +42,7 @@ public class FirstHomework {
                 } else {
                     inputDataForFunction(inputData);
                 }
-            } catch (NumberFormatException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Введено не целое число!");
                 inRange = false;
             }
