@@ -1,5 +1,6 @@
 package ru.otus.java.basic;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -25,13 +26,13 @@ public class FirstHomework {
             System.out.println("4 - сравнение чисел;");
             System.out.println("5 - сумма либо разность двух чисел.");
             System.out.println("0 - выход из программы;");
-            String inputData = input.nextLine();
+            int inputData;
 
             try {
-                int convertToInt = Integer.parseInt(inputData);
-                inRange = validNum(convertToInt, minNumber, maxNumber);
+                inputData = input.nextInt();
+                inRange = validNum(inputData, minNumber, maxNumber);
 
-                if (convertToInt == 0) {
+                if (inputData == 0) {
                     break;
                 }
 
@@ -39,9 +40,9 @@ public class FirstHomework {
                     System.out.println("Введено число вне диапазона!");
                     inRange = true;
                 } else {
-                    inputDataForFunction(convertToInt);
+                    inputDataForFunction(inputData);
                 }
-            } catch (NumberFormatException NotInteger) {
+            } catch (NumberFormatException e) {
                 System.out.println("Введено не целое число!");
                 inRange = false;
             }
@@ -52,7 +53,7 @@ public class FirstHomework {
 
     public static boolean validNum(int inputNumber, int minNumber, int maxNumber) {
 
-        return (inputNumber >= minNumber) && (inputNumber <= maxNumber);
+        return inputNumber >= minNumber && inputNumber <= maxNumber;
     }
 
     public static void inputDataForFunction(int number) {
@@ -61,19 +62,17 @@ public class FirstHomework {
         if (number == 1) {
             greetings();
         } else if (number == 2) {
-            System.out.println("Введите первое целое число 'а':");
-            String a = input.nextLine();
-            System.out.println("Введите второе целое число 'b':");
-            String b = input.nextLine();
-            System.out.println("Введите третье целое число 'c':");
-            String c = input.nextLine();
+            int a, b, c;
 
             try {
-                int convertAToInt = Integer.parseInt(a);
-                int convertBToInt = Integer.parseInt(b);
-                int convertCToInt = Integer.parseInt(c);
-                System.out.println(checkSign(convertAToInt, convertBToInt, convertCToInt));
-            } catch (NumberFormatException NotInteger) {
+                System.out.println("Введите первое целое число 'а':");
+                a = input.nextInt();
+                System.out.println("Введите второе целое число 'b':");
+                b = input.nextInt();
+                System.out.println("Введите третье целое число 'c':");
+                c = input.nextInt();
+                checkSign(a, b, c);
+            } catch (InputMismatchException e) {
                 System.out.println("Введено не целое число!");
             }
         } else if (number == 3) {
@@ -81,27 +80,27 @@ public class FirstHomework {
         } else if (number == 4) {
             compareNumbers();
         } else if (number == 5) {
-            System.out.println("Введите первое целое число 'a':");
-            String a = input.nextLine();
-            System.out.println("Введите второе целое число 'b':");
-            String b = input.nextLine();
-            System.out.println("Введите 0 - для поиска разницы чисел" +
-                    " или 1 - для поиска суммы чисел:");
-            String c = input.nextLine();
+
+            int a, b, c;
             boolean increment;
 
             try {
-                int convertAToInt = Integer.parseInt(a);
-                int convertBToInt = Integer.parseInt(b);
-                int convertCToInt = Integer.parseInt(c);
-                increment = validNum(convertCToInt, 0, 1);
+                System.out.println("Введите первое целое число 'a':");
+                a = input.nextInt();
+                System.out.println("Введите второе целое число 'b':");
+                b = input.nextInt();
+                System.out.println("Введите 0 - для поиска разности чисел" +
+                        " или 1 - для поиска суммы чисел:");
+                c = input.nextInt();
+                increment = validNum(c, 0, 1);
+
                 if (increment) {
-                    increment = convertCToInt != 0;
-                    System.out.println(addOrSubtractAndPrint(convertAToInt, convertBToInt, increment));
+                    increment = c != 0;
+                    addOrSubtractAndPrint(a, b, increment);
                 } else {
                     System.out.println("Третье число должно быть 0 либо 1");
                 }
-            } catch (NumberFormatException NotInteger) {
+            } catch (InputMismatchException e) {
                 System.out.println("Введено не целое число!");
             }
         }
@@ -113,14 +112,14 @@ public class FirstHomework {
 
     }
 
-    public static String  checkSign(int a, int b, int c) {
+    public static void checkSign(int a, int b, int c) {
         int sumOfNumbs = a + b + c;
 
         if (sumOfNumbs < 0) {
-            return sumOfNumbs + " Сумма отрицательная";
+            System.out.println(sumOfNumbs + " Сумма отрицательная");
+        } else {
+            System.out.println(sumOfNumbs + " Сумма положительная");
         }
-
-        return sumOfNumbs + " Сумма положительная";
     }
 
     public static void selectColor() {
@@ -128,7 +127,7 @@ public class FirstHomework {
 
         if (data <= 10) {
             System.out.println("Красный");
-        } else if (data > 10 && data <= 20) {
+        } else if (data <= 20) {
             System.out.println("Жёлтый");
         } else {
             System.out.println("Зелёный");
@@ -137,36 +136,36 @@ public class FirstHomework {
 
     public static void compareNumbers() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Введите первое целое число 'а':");
-        String a = input.nextLine();
-        System.out.println("Введите второе целое число 'b':");
-        String b = input.nextLine();
+        int a, b;
 
         try {
-            int convertAToInt = Integer.parseInt(a);
-            int convertBToInt = Integer.parseInt(b);
-            if (convertAToInt >= convertBToInt) {
+            System.out.println("Введите первое целое число 'а':");
+            a = input.nextInt();
+            System.out.println("Введите второе целое число 'b':");
+            b = input.nextInt();
+
+            if (a >= b) {
                 System.out.println("a >= b");
             } else {
                 System.out.println("a < b");
             }
-        } catch (NumberFormatException NotInteger) {
+        } catch (InputMismatchException e) {
             System.out.println("Введено не целое число!");
         }
 
     }
 
-    public static String addOrSubtractAndPrint(int initValue, int delta, boolean increment) {
+    public static void addOrSubtractAndPrint(int initValue, int delta, boolean increment) {
 
         if (increment) {
             int sumValueAndDelta = initValue + delta;
 
-            return increment + " " + initValue + " + " + delta + " = " + sumValueAndDelta;
+            System.out.println(increment + " " + initValue + " + " + delta + " = " + sumValueAndDelta);
+        } else {
+            int differenceValueAndDelta = initValue - delta;
+
+            System.out.println(increment + " " + initValue + " - " + delta + " = " + differenceValueAndDelta);
         }
-
-        int differenceValueAndDelta = initValue - delta;
-
-        return increment + " " + initValue + " - " + delta + " = " + differenceValueAndDelta;
     }
 
 }
