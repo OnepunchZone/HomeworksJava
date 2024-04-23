@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SecondHomework {
+    private static final Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
         chooseFunction();
@@ -31,7 +32,6 @@ public class SecondHomework {
     }
 
     public static void chooseFunction() {
-        Scanner input = new Scanner(System.in);
         boolean inRange;
 
         do {
@@ -62,7 +62,7 @@ public class SecondHomework {
                 if (!inRange) {
                     System.out.println("Введено число вне диапазона!");
                     inRange = true;
-                } else if (inputData <= 5){
+                } else if (inputData <= 5) {
                     inputDataForFunction(inputData);
                 } else {
                     inputDataForFunctionWithStar(inputData);
@@ -76,7 +76,6 @@ public class SecondHomework {
     }
 
     public static void inputDataForFunction(int number) {
-        Scanner input = new Scanner(System.in);
 
         if (number == 1) {
             int inputNumber;
@@ -125,16 +124,28 @@ public class SecondHomework {
     }
 
     public static void inputDataForFunctionWithStar(int number) {
+
         if (number == 6) {
             sumElementsOfArrays(randomArray(), randomArray(), randomArray());
         } else if (number == 7) {
 //            int[] firstArray = {1, 1, 1, 1, 1, 5};
-            int[] secondArray = {5, 3, 4, -2};
+            int[] secondArray = {5, 3, 4, -1, 2};
             pointEqualsPartsOfArray(secondArray);
         } else if (number == 8) {
 //            int[] increasingArr = {1, 2, 3};
             int[] decreasingArr = {8, 6, 3, 2, 1, 0};
-            increasingOrDecreasingFunction(decreasingArr);
+            int choose;
+
+            try {
+                System.out.println("Введите 0 или 1, где: ");
+                System.out.println("0 - проверка массива на возрастание;");
+                System.out.println("1 - проверка массива на убывание;");
+                choose = input.nextInt();
+                increasingOrDecreasingFunction(decreasingArr, choose);
+            } catch (InputMismatchException e) {
+                System.out.println("Введено не целое число");
+            }
+
         } else if (number == 9) {
             invertedArray(randomArray());
         }
@@ -146,7 +157,7 @@ public class SecondHomework {
         }
     }
 
-    public static void sumNumbsOfArrayBiggerFivePrint (int[] array) {
+    public static void sumNumbsOfArrayBiggerFivePrint(int[] array) {
         int sum = 0;
 
         for (int j : array) {
@@ -215,45 +226,48 @@ public class SecondHomework {
     public static void sumElementsOfArrays(int[] firstArray, int[] secondArray, int[] thirdArray) {
         int maxArrayLength = Math.max(firstArray.length,
                 Math.max(secondArray.length, thirdArray.length));
+        int[] sumOfArrays = new int[maxArrayLength];
 
         System.out.println("Сумма элементов массива: ");
         System.out.println(Arrays.toString(firstArray) + "\n+");
         System.out.println(Arrays.toString(secondArray) + "\n+");
         System.out.println(Arrays.toString(thirdArray) + "\n=");
 
-        if (firstArray.length < maxArrayLength) {
-            firstArray = Arrays.copyOf(firstArray, maxArrayLength);
+        for (int i = 0; i < firstArray.length; i++) {
+            sumOfArrays[i] += firstArray[i];
         }
 
-        if (secondArray.length < maxArrayLength) {
-            secondArray = Arrays.copyOf(secondArray, maxArrayLength);
+        for (int i = 0; i < secondArray.length; i++) {
+            sumOfArrays[i] += secondArray[i];
         }
 
-        if (thirdArray.length < maxArrayLength) {
-            thirdArray = Arrays.copyOf(firstArray, maxArrayLength);
+        for (int i = 0; i < thirdArray.length; i++) {
+            sumOfArrays[i] += thirdArray[i];
         }
 
-        for (int i = 0; i < maxArrayLength; i++) {
-            firstArray[i] = firstArray[i] + secondArray[i] + thirdArray[i];
-        }
-
-        System.out.println("Сумма элементов массива:\n" + Arrays.toString(firstArray));
+        System.out.println("Сумма элементов массива:\n" + Arrays.toString(sumOfArrays));
     }
 
-    public static void pointEqualsPartsOfArray (int[] array) {
+    public static void pointEqualsPartsOfArray(int[] array) {
+        int sumOfArray = 0;
         int sumLeft = 0;
         String[] arrayWithPoint = new String[array.length];
 
+        for (int sum : array) {
+            sumOfArray += sum;
+        }
+
         for (int i = 0; i < array.length - 1; i++) {
-            int sumRight = 0;
+            if (sumOfArray % 2 == 1) {
+                break;
+            }
             sumLeft += array[i];
             arrayWithPoint[i] = Integer.toString(array[i]);
             for (int j = i + 1; j < array.length; j++) {
-                sumRight += array[j];
                 arrayWithPoint[j] = Integer.toString(array[j]);
             }
 
-            if (sumLeft == sumRight) {
+            if (sumLeft == (sumOfArray - sumLeft)) {
                 arrayWithPoint[i + 1] = "|" + array[i + 1];
                 break;
             }
@@ -262,55 +276,44 @@ public class SecondHomework {
         System.out.println(Arrays.toString(arrayWithPoint));
     }
 
-    public static void increasingOrDecreasingFunction(int[] array) {
-        Scanner input = new Scanner(System.in);
-        int choose;
+    public static void increasingOrDecreasingFunction(int[] array, int choose) {
         int increasing;
         int decreasing;
         int count = 0;
 
-        try {
-            System.out.println("Введите 0 или 1, где: ");
-            System.out.println("0 - проверка массива на возрастание;");
-            System.out.println("1 - проверка массива на убывание;");
-            choose = input.nextInt();
-
-            if (choose == 0) {
-                for (int i = 0; i < array.length - 1; i++) {
-                    increasing = array[i];
-                    if (increasing < array[i + 1]) {
-                        count ++;
-                        System.out.println(count);
-                    } else {
-                        System.out.println(Arrays.toString(array));
-                        System.out.println("Элементы массива НЕ идут в порядке возрастания.");
-                        break;
-                    }
-                    if (count + 1 == array.length) {
-                        System.out.println(Arrays.toString(array));
-                        System.out.println("Элементы массива идут в порядке возрастания.");
-                    }
+        if (choose == 0) {
+            for (int i = 0; i < array.length - 1; i++) {
+                increasing = array[i];
+                if (increasing < array[i + 1]) {
+                    count++;
+                    System.out.println(count);
+                } else {
+                    System.out.println(Arrays.toString(array));
+                    System.out.println("Элементы массива НЕ идут в порядке возрастания.");
+                    break;
                 }
-            } else if (choose == 1) {
-                for (int i = 0; i < array.length - 1; i++) {
-                    decreasing = array[i];
-                    if (decreasing > array[i + 1]) {
-                        count ++;
-                    } else {
-                        System.out.println(Arrays.toString(array));
-                        System.out.println("Элементы массива НЕ идут в порядке убывания.");
-                        break;
-                    }
-                    if (count + 1 == array.length) {
-                        System.out.println(Arrays.toString(array));
-                        System.out.println("Элементы массива идут в порядке убывания.");
-                    }
+                if (count + 1 == array.length) {
+                    System.out.println(Arrays.toString(array));
+                    System.out.println("Элементы массива идут в порядке возрастания.");
                 }
-            } else {
-                System.out.println("Число вне диапазона. Выберете либо 0, либо 1.");
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Введено не целое число");
+        } else if (choose == 1) {
+            for (int i = 0; i < array.length - 1; i++) {
+                decreasing = array[i];
+                if (decreasing > array[i + 1]) {
+                    count++;
+                } else {
+                    System.out.println(Arrays.toString(array));
+                    System.out.println("Элементы массива НЕ идут в порядке убывания.");
+                    break;
+                }
+                if (count + 1 == array.length) {
+                    System.out.println(Arrays.toString(array));
+                    System.out.println("Элементы массива идут в порядке убывания.");
+                }
+            }
+        } else {
+            System.out.println("Число вне диапазона. Выберете либо 0, либо 1.");
         }
     }
 
