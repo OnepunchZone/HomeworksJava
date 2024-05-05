@@ -1,11 +1,9 @@
-package ru.otus.java.OOP1;
+package ru.otus.java.oop1;
 
 
 import java.time.LocalDate;
 
 public class User {
-    public LocalDate currentDate = LocalDate.now();
-    public final int maxYear = currentDate.getYear();
     private String lastName;
     private String firstName;
     private String patronymic;
@@ -67,7 +65,7 @@ public class User {
 
     public void setYearOfTheBirth(int yearOfTheBirth) {
 
-        if (validateYearOfBirth(yearOfTheBirth) == maxYear + 1) {
+        if (validateYearOfBirth(yearOfTheBirth) == currentYear() + 1) {
             System.out.println("Ты ещё не родился, либо очень древний организм!");
         } else {
             this.yearOfTheBirth = yearOfTheBirth;
@@ -85,10 +83,16 @@ public class User {
 
     public int validateYearOfBirth(int yearOfTheBirth) {
 
-        if (yearOfTheBirth > 0 && yearOfTheBirth <= maxYear) {
+        if (yearOfTheBirth > 0 && yearOfTheBirth <= currentYear()) {
             return yearOfTheBirth;
         } else {
-            return  maxYear + 1;
+            return  currentYear() + 1;
         }
+    }
+
+    public int currentYear() {
+        LocalDate currentDate = LocalDate.now();
+
+        return currentDate.getYear();
     }
 }

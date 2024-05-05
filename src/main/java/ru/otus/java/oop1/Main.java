@@ -1,4 +1,4 @@
-package ru.otus.java.OOP1;
+package ru.otus.java.oop1;
 
 
 public class Main {
@@ -11,12 +11,12 @@ public class Main {
         Box box = new Box(30, 40, 30, "белый");
         box.info();
         box.putInBox();
-        box.setOpen(true);
+        box.openBox();
         box.putInBox();
         box.putInBox();
-        box.setOpen(false);
+        box.closeBox();
         box.deleteFromBox();
-        box.setOpen(true);
+        box.openBox();
         box.deleteFromBox();
         box.putInBox();
         box.setColor("Чёрный");
@@ -48,7 +48,7 @@ public class Main {
         };
 
         for (User user: users) {
-            if(user.maxYear - user.getYearOfTheBirth() > 40) {
+            if(user.currentYear() - user.getYearOfTheBirth() > 40) {
                 System.out.println(user);
             }
         }

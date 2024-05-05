@@ -1,4 +1,4 @@
-package ru.otus.java.OOP1;
+package ru.otus.java.oop1;
 
 public class Box {
     private final int length;
@@ -41,30 +41,22 @@ public class Box {
         return open;
     }
 
-    public void setOpen(boolean open) {
-        System.out.println("///Вызывается функция setOpen()///");
-        this.open = open;
+    public void openBox() {
+        System.out.println("///Вызывается функция openBox()///");
+        open = true;
 
-        if(open) {
-            System.out.println("Коробка открыта.");
-        } else {
-            System.out.println("Коробка закрыта.");
-        }
+        System.out.println("Коробка открыта.");
+    }
+
+    public void closeBox() {
+        System.out.println("///Вызывается функция closeBox()///");
+        open = false;
+
+        System.out.println("Коробка закрыта.");
     }
 
     public boolean isEmpty() {
         return isEmpty;
-    }
-
-    public void setEmpty(boolean empty) {
-        System.out.println("///Вызывается функция setEmpty()///");
-        isEmpty = empty;
-
-        if(empty) {
-            System.out.println("Коробка пустая.");
-        } else {
-            System.out.println("В коробке что-то есть.");
-        }
     }
 
     public void info() {
@@ -92,7 +84,7 @@ public class Box {
 
         } else {
             System.out.println("Нужно открыть коробку." +
-                    " Измените параметр функции setOpen() на false");
+                    " Воспользуйтесь функцией openBox()");
         }
     }
 
@@ -106,7 +98,7 @@ public class Box {
                 System.out.println("Коробка вновь пустая.");
             } else {
                 System.out.println("Откройте сначала коробку" +
-                        ". Измените параметр функции setOpen() на false");
+                        ". Воспользуйтесь функцией openBox()");
             }
         } else {
             System.out.println("Коробка пустая.");
