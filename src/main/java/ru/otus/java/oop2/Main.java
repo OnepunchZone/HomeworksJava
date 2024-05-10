@@ -1,5 +1,9 @@
 package ru.otus.java.oop2;
 
+import ru.otus.java.oop2.animals.Cat;
+import ru.otus.java.oop2.animals.Dog;
+import ru.otus.java.oop2.animals.Horse;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -19,7 +23,7 @@ public class Main {
 
                 System.out.println("Котейка " + chooseAnimal.getName() + " начал(а) бег.");
                 run(chooseAnimal);
-                System.out.println("Котейка не любит мочить лапки =(. Плыть отказывается ");
+                swim(chooseAnimal);
 
             }
 

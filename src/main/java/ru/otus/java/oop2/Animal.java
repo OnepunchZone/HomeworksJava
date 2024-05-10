@@ -1,10 +1,10 @@
 package ru.otus.java.oop2;
 
 public class Animal {
-    private String name;
-    private int speed;
-    private int enduranceSwimCost;
-    private int endurance;
+    String name;
+    int speed;
+    int enduranceSwimCost;
+    int endurance;
     private final int enduranceRunCost = 1;
 
     public Animal(String name, int speed, int endurance) {
@@ -58,23 +58,8 @@ public class Animal {
     }
 
     private int time(int distance, int enduranceCost) {
-        int distancePassed = distance;
-
-        for (int i = 0; i <= distance; i += speed) {
-            distancePassed -= speed;
-
-            if (distancePassed < 1) {
-                break;
-            }
-
-            if (endurance < 1) {
-                return -1;
-            }
-
-            endurance -= enduranceCost;
-        }
-
-        return distance / speed;
+        endurance -= (distance * enduranceCost) / speed;
+        return endurance < 1 ? -1 : distance / speed;
     }
 
     public void info() {
