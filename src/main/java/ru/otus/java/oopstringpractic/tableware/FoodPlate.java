@@ -1,11 +1,9 @@
 package ru.otus.java.oopstringpractic.tableware;
 
 
-import ru.otus.java.oopstringpractic.Cat;
-
 public class FoodPlate {
-    int maxAmountFood;
-    int currentFood;
+    private int maxAmountFood;
+    private int currentFood;
 
     public FoodPlate(int maxAmountFood) {
         this.maxAmountFood = maxAmountFood;
@@ -41,18 +39,6 @@ public class FoodPlate {
             System.out.println("В тарелке сейчас " + currentFood + " ед. из " +
                     maxAmountFood + " ед.");
         }
-    }
-
-    public boolean reducingFood(Cat cat) {
-
-        if (currentFood - cat.getAppetite() >= 0) {
-            cat.setFullCat(true);
-            currentFood -= cat.getAppetite();
-            return true;
-        }
-
-        cat.setFullCat(false);
-        return false;
     }
 
 }

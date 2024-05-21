@@ -19,17 +19,17 @@ public class Main {
         FoodPlate plate = new FoodPlate(200);
 
         for (Cat chooseCat : cats) {
-            infoAndReducingFood(chooseCat, plate);
+            infoAndEat(chooseCat, plate);
 
             if (!chooseCat.isFullCat()) {
-                plate.addSomeFood(300);
-                infoAndReducingFood(chooseCat, plate);
+                plate.addSomeFood(100);
+                infoAndEat(chooseCat, plate);
             }
         }
     }
 
-    private static void infoAndReducingFood(Cat chooseCat, FoodPlate plate) {
-        plate.reducingFood(chooseCat);
+    private static void infoAndEat(Cat chooseCat, FoodPlate plate) {
+        chooseCat.eat(plate);
         System.out.println(chooseCat);
     }
 

@@ -1,5 +1,7 @@
 package ru.otus.java.oopstringpractic;
 
+import ru.otus.java.oopstringpractic.tableware.FoodPlate;
+
 public class Cat {
     private String name;
     private int appetite;
@@ -23,8 +25,13 @@ public class Cat {
         return fullCat;
     }
 
-    public void setFullCat(boolean fullCat) {
-        this.fullCat = fullCat;
+    public void eat(FoodPlate plate) {
+        if (plate.getCurrentFood() - appetite >= 0) {
+            plate.setCurrentFood(plate.getCurrentFood() - appetite);
+            fullCat = true;
+        } else {
+            fullCat = false;
+        }
     }
 
     @Override
