@@ -22,7 +22,7 @@ public class Main {
             infoAndEat(chooseCat, plate);
 
             if (!chooseCat.isFullCat()) {
-                plate.addSomeFood(100);
+                plate.addSomeFood(120);
                 infoAndEat(chooseCat, plate);
             }
         }
