@@ -1,4 +1,4 @@
-package ru.otus.java.oop2;
+package ru.otus.java.basic.oop2;
 
 public class Animal {
     String name;

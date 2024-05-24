@@ -1,4 +1,4 @@
-package ru.otus.java.oop1;
+package ru.otus.java.basic.oop1;
 
 
 import java.time.LocalDate;
