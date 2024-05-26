@@ -6,7 +6,7 @@ import ru.otus.java.basic.oop3.Transport;
 public class Horse implements Transport{
     private int distance;
     private LandscapeType landscapeType;
-    private double endurance = 1000;
+    private static double endurance = 1000;
     private double enduranceRate = 0.5;
     private final double maxDistance = endurance * 2;
 
@@ -37,12 +37,12 @@ public class Horse implements Transport{
         this.landscapeType = landscapeType;
     }
 
-    public double getEndurance() {
+    public static double getEndurance() {
         return endurance;
     }
 
-    public void setEndurance(double endurance) {
-        this.endurance = endurance;
+    public static void setEndurance(double endurance) {
+        Horse.endurance = endurance;
     }
 
     public double getEnduranceRate() {
@@ -57,7 +57,7 @@ public class Horse implements Transport{
     public boolean move(int distance) {
 
         if (cantMove()) {
-            endurance -= this.distance * enduranceRate;
+            endurance -=(double) this.distance * enduranceRate;
 
             if ((endurance >= 0 && distance <= this.distance) || (endurance <= 0 && maxDistance >= distance) ) {
                 System.out.println("Расстояние полностью пройдено на лошадине.");
