@@ -6,10 +6,10 @@ import ru.otus.java.basic.oop3.Transport;
 public class AllTerrainVehicle implements Transport {
     private int distance;
     private LandscapeType landscapeType;
-    private static double maxFuel = 40;
-    private static int fuelRate = 8;
+    private double maxFuel = 40;
+    private int fuelRate = 8;
     private static final int METRES_IN_KM = 1000;
-    private final double maxDistance = maxFuel * METRES_IN_KM / fuelRate;;
+    private final double maxDistance = maxFuel * METRES_IN_KM / fuelRate;
 
     public AllTerrainVehicle(int distance, LandscapeType landscapeType) {
         this.distance = distance;
@@ -38,20 +38,20 @@ public class AllTerrainVehicle implements Transport {
         this.landscapeType = landscapeType;
     }
 
-    public static double getMaxFuel() {
+    public double getMaxFuel() {
         return maxFuel;
     }
 
-    public static void setMaxFuel(double maxFuel) {
-        AllTerrainVehicle.maxFuel = maxFuel;
+    public void setMaxFuel(double maxFuel) {
+        this.maxFuel = maxFuel;
     }
 
-    public static int getFuelRate() {
+    public int getFuelRate() {
         return fuelRate;
     }
 
-    public static void setFuelRate(int fuelRate) {
-        AllTerrainVehicle.fuelRate = fuelRate;
+    public void setFuelRate(int fuelRate) {
+        this.fuelRate = fuelRate;
     }
 
     @Override
