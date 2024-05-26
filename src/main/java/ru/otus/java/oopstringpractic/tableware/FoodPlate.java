@@ -41,6 +41,10 @@ public class FoodPlate {
         }
     }
 
+    public void reducingFood(int appetite) {
+        currentFood -= appetite;
+    }
+
 }
 
 
