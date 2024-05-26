@@ -67,8 +67,8 @@ public class Horse implements Transport{
                         endurance * 2 + " метров.");
                 return true;
             }
-            System.out.println("Лошадины нет сил пройти такое расстояние.");
 
+            System.out.println("Лошадины нет сил пройти такое расстояние.");
             return false;
         }
 
