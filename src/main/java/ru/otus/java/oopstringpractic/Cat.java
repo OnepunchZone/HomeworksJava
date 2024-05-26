@@ -27,7 +27,7 @@ public class Cat {
 
     public void eat(FoodPlate plate) {
         if (plate.getCurrentFood() - appetite >= 0) {
-            plate.setCurrentFood(plate.getCurrentFood() - appetite);
+            plate.reducingFood(appetite);
             fullCat = true;
         } else {
             fullCat = false;
