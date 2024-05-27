@@ -1,8 +1,8 @@
-package ru.otus.java.oop2;
+package ru.otus.java.basic.oop2;
 
-import ru.otus.java.oop2.animals.Cat;
-import ru.otus.java.oop2.animals.Dog;
-import ru.otus.java.oop2.animals.Horse;
+import ru.otus.java.basic.oop2.animals.Cat;
+import ru.otus.java.basic.oop2.animals.Dog;
+import ru.otus.java.basic.oop2.animals.Horse;
 
 public class Main {
 

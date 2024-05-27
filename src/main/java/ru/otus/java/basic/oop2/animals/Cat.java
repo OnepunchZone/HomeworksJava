@@ -1,7 +1,7 @@
-package ru.otus.java.oop2.animals;
+package ru.otus.java.basic.oop2.animals;
 
 
-import ru.otus.java.oop2.Animal;
+import ru.otus.java.basic.oop2.Animal;
 
 public class Cat extends Animal {
 
