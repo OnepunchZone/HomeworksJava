@@ -5,10 +5,7 @@ import ru.otus.java.basic.hwexceptions.exceptions.AppArraySizeException;
 
 public class Main {
     public static void main(String[] args) throws AppArraySizeException{
-        String[][] array = {{"1","3","4","5" }, {"1","3","4","5"}, {"1","3","4","5"}, {"1","3","4","5"}};
-//        String[][] array = {{"1","3","4","5" }, {"1","3","4","5"}, {"1","3","4dog","5"}, {"1","3","4","5"}};
-//        String[][] array = {{"1","3","4","5" }, {"1","3","4","5"},
-//                {"1","3","4","5"}, {"1","3","4","5"}, {"1","3","4","5"}};
+        String[][] array = {{"1","3","4","5ро" }, {"1","3","4","5"}, {"1","3","4","5"}, {"1","3","4","5"}};
 
         int maxArrLength = 4;
 
@@ -45,9 +42,8 @@ public class Main {
                     convertString = Integer.parseInt(doubleArray[i][j]);
                     sum += convertString;
                 } catch (NumberFormatException e) {
-                    throw new AppArrayDataException(e.getMessage(), i, j);
+                    throw new AppArrayDataException(i, j);
                 }
-
             }
         }
 
