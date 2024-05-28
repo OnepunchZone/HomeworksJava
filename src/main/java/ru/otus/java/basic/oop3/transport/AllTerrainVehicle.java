@@ -67,8 +67,8 @@ public class AllTerrainVehicle implements Transport {
                     (maxFuel * METRES_IN_KM) / fuelRate + " метров.");
             return true;
             }
-        System.out.println("Вездеходу не хватит топлива на такое расстояние.");
 
+        System.out.println("Вездеходу не хватит топлива на такое расстояние.");
         return false;
     }
 }

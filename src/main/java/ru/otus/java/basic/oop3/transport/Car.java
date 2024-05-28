@@ -68,8 +68,8 @@ public class Car implements Transport {
                         (maxFuel * METRES_IN_KM) / fuelRate + " метров.");
                 return true;
             }
-            System.out.println("Машине не хватит топлива на такое расстояние.");
 
+            System.out.println("Машине не хватит топлива на такое расстояние.");
             return false;
         }
 
