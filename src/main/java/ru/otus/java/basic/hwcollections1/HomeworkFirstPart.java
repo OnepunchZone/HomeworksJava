@@ -19,7 +19,6 @@ public class HomeworkFirstPart {
         for (int i = min; i <= max; i++) {
             arrList.add(i);
         }
-        System.out.println("Созданый список методом createArrList():\n" + arrList);
         return arrList;
     }
 
@@ -31,7 +30,6 @@ public class HomeworkFirstPart {
                 sum += element;
             }
         }
-        System.out.println("Результат метода sumNumbsBiggerFive():");
         return sum;
     }
 
@@ -43,8 +41,6 @@ public class HomeworkFirstPart {
             li.next();
             li.set(num);
         }
-//        либо воспользоваться методом из коробки arrList.replaceAll(ignored -> num)
-        System.out.println("Результат метода overwriteList():");
         return arrList;
     }
 
@@ -56,7 +52,6 @@ public class HomeworkFirstPart {
             elem = li.next() + num;
             li.set(elem);
         }
-        System.out.println("Результат метода plusNumber():");
         return arrList;
     }
 }

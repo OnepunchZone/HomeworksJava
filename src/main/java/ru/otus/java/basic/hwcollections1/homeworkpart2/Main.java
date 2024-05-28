@@ -11,7 +11,7 @@ public class Main {
         System.out.println();
         System.out.println(chooseMinAge(createEmployeeList(), 30));
         System.out.println();
-        minAverageAge(createEmployeeList(), 20);
+        System.out.println(minAverageAge(createEmployeeList(), 20));
         System.out.println();
         System.out.println(youngestEmployee(createEmployeeList()));
         
@@ -34,7 +34,6 @@ public class Main {
         for (Employee name : arrList) {
             namesList.add(name.getName());
         }
-        System.out.println("Список имен всех сотрудников :");
         return namesList;
     }
 
@@ -46,12 +45,10 @@ public class Main {
                 relevantList.add(employee);
             }
         }
-        System.out.println("Список подходящих сотрудников с возрастом не менее " +
-                minAge + " лет :");
         return relevantList;
     }
 
-    public static void minAverageAge(List<Employee> arrList, int minAverAge) {
+    public static boolean minAverageAge(List<Employee> arrList, int minAverAge) {
         ListIterator<Employee> li = arrList.listIterator();
         int sumOfAge = 0;
 
@@ -60,27 +57,23 @@ public class Main {
         }
 
         int averAge = sumOfAge / arrList.size();
-        System.out.println("Средний возраст сотрудников = " + averAge);
-        System.out.println(averAge > minAverAge ?
-                "Средний возраст сотрудников БОЛЬШЕ заданного значения " +
-                minAverAge : "Средний возраст сотрудников МЕНЬШЕ заданного значения " + minAverAge);
+
+        return averAge > minAverAge;
     }
 
-    public static Employee youngestEmployee(List<Employee> arrList) {
-        ListIterator<Employee> li = arrList.listIterator();
-        int elem;
-        int minAge = Integer.MAX_VALUE;
-        Employee youngest = null;
+    public static List<Employee> youngestEmployee(List<Employee> arrList) {
+        int minAge = arrList.get(0).getAge();
 
-        while (li.hasNext()) {
-            elem = li.next().getAge();
-            if ( elem <= minAge) {
-                minAge = elem;
-                youngest = li.previous();
-                li.next();
+        for (int i = 1; i < arrList.size(); i++) {
+            if (minAge > arrList.get(i).getAge()) {
+                minAge = arrList.get(i).getAge();
+                arrList.remove(0);
+
+            } else {
+                arrList.remove(i);
             }
+            i--;
         }
-        System.out.println("Самый молодой сотрудник :");
-        return youngest;
+        return arrList;
     }
 }
