@@ -24,20 +24,21 @@ public class PhoneNumberRandom {
 
     public static String convertNumber(String number) {
         StringBuilder numberBuild = new StringBuilder(number);
+        numberBuild.insert(0, " ");
 
         if (number.length() == 12) {
-            numberBuild.insert(2, "(");
-            numberBuild.insert(6, ")");
-            numberBuild.insert(10, "-");
-            numberBuild.insert(13, "-");
+            numberBuild.insert(3, "(");
+            numberBuild.insert(7, ")");
+            numberBuild.insert(11, "-");
+            numberBuild.insert(14, "-");
             return  numberBuild.toString();
         }
 
         if (number.length() == 11) {
-            numberBuild.insert(1, "(");
-            numberBuild.insert(5, ")");
-            numberBuild.insert(9, "-");
-            numberBuild.insert(12, "-");
+            numberBuild.insert(2, "(");
+            numberBuild.insert(6, ")");
+            numberBuild.insert(10, "-");
+            numberBuild.insert(13, "-");
             return  numberBuild.toString();
         }
 
