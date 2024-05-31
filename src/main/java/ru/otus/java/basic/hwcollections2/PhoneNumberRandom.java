@@ -9,40 +9,39 @@ public class PhoneNumberRandom {
 
         for (int i = 2; i < phoneNumber.length; i++) {
             phoneNumber[i] = String.valueOf((int) (Math.random() * maxOfRandom));
-            if (i == 3) {
-                phoneNumber[i] += ")";
-            } else if (i == 6 || i == 8) {
-                phoneNumber[i] += "-";
-            }
         }
-        return String.join("", phoneNumber);
+
+        return addSymbols(phoneNumber);
+    }
+
+    private static String addSymbols(String[] symbol) {
+        symbol[3] += ")";
+        symbol[6] += "-";
+        symbol[8] += "-";
+
+        return String.join("", symbol);
     }
 
     public static String convertNumber(String number) {
-        String newNumber = " ";
+        StringBuilder numberBuild = new StringBuilder(number);
 
-        for (int i = 0; i < number.length(); i++) {
-            newNumber += number.charAt(i);
-
-            if (number.length() == 12) {
-                if (i == 1) {
-                    newNumber += "(";
-                } else if (i == 4) {
-                    newNumber += ")";
-                } else if (i == 7 || i == 9) {
-                    newNumber += "-";
-                }
-            } else if (number.length() == 11) {
-                if (i == 0) {
-                    newNumber += "(";
-                } else if (i == 3) {
-                    newNumber += ")";
-                } else if (i == 6 || i == 8) {
-                    newNumber += "-";
-                }
-            }
+        if (number.length() == 12) {
+            numberBuild.insert(2, "(");
+            numberBuild.insert(6, ")");
+            numberBuild.insert(10, "-");
+            numberBuild.insert(13, "-");
+            return  numberBuild.toString();
         }
-        return newNumber;
+
+        if (number.length() == 11) {
+            numberBuild.insert(1, "(");
+            numberBuild.insert(5, ")");
+            numberBuild.insert(9, "-");
+            numberBuild.insert(12, "-");
+            return  numberBuild.toString();
+        }
+
+        return numberBuild.toString();
     }
 
 }
