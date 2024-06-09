@@ -1,50 +1,45 @@
 package ru.otus.java.basic.algorithm1;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BinaryTree {
     private Node root;
+
+    public BinaryTree() {
+        this.root = null;
+    }
 
     public Node getRoot() {
         return root;
     }
 
-    private List<Integer> createSortList() {
-        List<Integer> numList = new ArrayList<>();
+    public void addNode(int value) {
+        Node newNode = new Node(value);
 
-        for (int i = 0; i < 15; i++) {
-            numList.add(i);
+        if (root == null) {
+            root = newNode;
         }
-        return numList;
-    }
+        else {
+            Node nodeNow = root;
+            Node parentNode;
 
-    private Node addNode(Node node, int value) {
-
-        if (node == null) {
-            return new Node(value);
-        }
-        if (value < root.getVal()) {
-            node.setLeft(addNode(node.getLeft(), value));
-        } else if (value > root.getVal()) {
-            node.setRight(addNode(node.getRight(), value));
-        } else {
-            return node;
-        }
-
-        return node;
-    }
-
-    public void createTree() {
-        int len = createSortList().size();
-        int midVal = len / 2;
-        root = new Node(createSortList().get(midVal));
-
-        for (int i = 0; i < len ; i++) {
-            if (i < midVal) {
-                root = addNode(root, createSortList().get((midVal-1) - i));
-            } else {
-                root = addNode(root, createSortList().get(i));
+            while (true) {
+                parentNode = nodeNow;
+                if(value == nodeNow.getVal()) {
+                    return;
+                }
+                else  if (value < nodeNow.getVal()) {
+                    nodeNow = nodeNow.getLeft();
+                    if (nodeNow == null) {
+                        parentNode.setLeft(newNode);
+                        return;
+                    }
+                }
+                else {
+                    nodeNow = nodeNow.getRight();
+                    if (nodeNow == null) {
+                        parentNode.setRight(newNode);
+                        return;
+                    }
+                }
             }
         }
     }
