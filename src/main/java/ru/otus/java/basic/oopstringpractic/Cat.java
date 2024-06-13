@@ -1,6 +1,6 @@
-package ru.otus.java.oopstringpractic;
+package ru.otus.java.basic.oopstringpractic;
 
-import ru.otus.java.oopstringpractic.tableware.FoodPlate;
+import ru.otus.java.basic.oopstringpractic.tableware.FoodPlate;
 
 public class Cat {
     private String name;

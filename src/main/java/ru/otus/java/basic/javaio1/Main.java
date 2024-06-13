@@ -51,10 +51,12 @@ public class Main {
     }
 
     private static void writeFile(File file, String str) throws IOException {
-        BufferedWriter out = new BufferedWriter(new FileWriter(file, true));
-        out.write("\n");
-        out.write(str);
-        out.close();
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(file, true))) {
+            out.write("\n");
+            out.write(str);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void printAndReturn(File file) throws IOException {
