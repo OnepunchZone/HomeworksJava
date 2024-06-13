@@ -1,4 +1,4 @@
-package ru.otus.java.oopstringpractic.tableware;
+package ru.otus.java.basic.oopstringpractic.tableware;
 
 
 public class FoodPlate {
