@@ -12,6 +12,11 @@ public class PingClient {
         this.out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
     }
 
+    public void begin() throws IOException {
+        out.writeUTF("");
+        out.flush();
+    }
+
     public void sendNum(double num) throws IOException {
         out.writeDouble(num);
         out.flush();
@@ -24,5 +29,9 @@ public class PingClient {
 
     public double read() throws IOException {
         return  in.readDouble();
+    }
+
+    public String readBegin() throws IOException {
+        return in.readUTF();
     }
 }
