@@ -11,34 +11,32 @@ public class ArrayMultithreading {
 
         long start = System.currentTimeMillis();
         Thread first = new Thread(() -> {
-            for (int i = 0; i < firstPart; i++) {
-                array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
-            }
+            forCycle(array, 0, firstPart);
         });
         first.start();
 
         Thread second = new Thread(() -> {
-            for (int i = firstPart; i < secondPart; i++) {
-                array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
-            }
+            forCycle(array, firstPart, secondPart);
         });
         second.start();
 
         Thread third = new Thread(() -> {
-            for (int i = secondPart; i < thirdPart; i++) {
-                array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
-            }
+            forCycle(array, secondPart, thirdPart);
         });
         third.start();
 
         Thread fourth = new Thread(() -> {
-            for (int i = thirdPart; i < fourthPart; i++) {
-                array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
-            }
+            forCycle(array, thirdPart, fourthPart);
         });
         fourth.start();
         long finish = System.currentTimeMillis();
 
         return finish - start;
+    }
+
+    private void forCycle(double[] array, int a, int b) {
+        for (int i = a; i < b; i++) {
+            array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
+        }
     }
 }
