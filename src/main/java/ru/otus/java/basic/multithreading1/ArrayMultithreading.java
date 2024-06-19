@@ -13,26 +13,27 @@ public class ArrayMultithreading {
         Thread first = new Thread(() -> {
             forCycle(array, 0, firstPart);
         });
-        first.start();
-        first.join();
 
         Thread second = new Thread(() -> {
             forCycle(array, firstPart, secondPart);
         });
-        second.start();
-        first.join();
 
         Thread third = new Thread(() -> {
             forCycle(array, secondPart, thirdPart);
         });
-        third.start();
-        first.join();
 
         Thread fourth = new Thread(() -> {
             forCycle(array, thirdPart, fourthPart);
         });
+
+        first.start();
+        second.start();
+        third.start();
         fourth.start();
         first.join();
+        second.join();
+        third.join();
+        fourth.join();
         long finish = System.currentTimeMillis();
 
         return finish - start;
