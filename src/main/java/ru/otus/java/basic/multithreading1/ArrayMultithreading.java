@@ -6,7 +6,7 @@ public class ArrayMultithreading {
     private final int thirdPart = 75_000_000;
     private final int fourthPart = 100_000_000;
 
-    public long createArray() {
+    public long createArray() throws InterruptedException {
         double[] array = new double[fourthPart];
 
         long start = System.currentTimeMillis();
@@ -14,21 +14,25 @@ public class ArrayMultithreading {
             forCycle(array, 0, firstPart);
         });
         first.start();
+        first.join();
 
         Thread second = new Thread(() -> {
             forCycle(array, firstPart, secondPart);
         });
         second.start();
+        first.join();
 
         Thread third = new Thread(() -> {
             forCycle(array, secondPart, thirdPart);
         });
         third.start();
+        first.join();
 
         Thread fourth = new Thread(() -> {
             forCycle(array, thirdPart, fourthPart);
         });
         fourth.start();
+        first.join();
         long finish = System.currentTimeMillis();
 
         return finish - start;
