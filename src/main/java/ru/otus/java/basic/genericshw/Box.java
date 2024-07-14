@@ -20,13 +20,26 @@ public class Box <T> {
         this.listObj = listObj;
     }
 
-    public void addFruit(T box) {
-        listObj.add(box);
+    public double weightBox() {
+        double sum = 0.0;
+        for (Fruit fruit : (List<? extends Fruit>) listObj) {
+            double weightFruit = fruit.getWeight().doubleValue();
+            sum += weightFruit;
+        }
+        return sum;
     }
 
-    public void takeFruitFromBox(T fruit, Box<?> delFromBox) {
-        listObj.add(fruit);
-        delFromBox.getListObj().remove(fruit);
+    public boolean compareBox(Box<? extends Fruit> box) {
+        return Math.abs(this.weightBox() - box.weightBox()) < 0.0001;
+    }
+
+    public void addFruit(T t) {
+        listObj.add(t);
+    }
+
+    public void getAllFromBox(List<? extends T> box) {
+        listObj.addAll(box);
+        box.clear();
     }
 
     @Override
