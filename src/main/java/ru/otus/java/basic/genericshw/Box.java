@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Box <T> {
+public class Box <T extends Fruit> {
     private List<T> listObj;
 
     public Box(T... arrObj) {
@@ -22,7 +22,7 @@ public class Box <T> {
 
     public double weightBox() {
         double sum = 0.0;
-        for (Fruit fruit : (List<? extends Fruit>) listObj) {
+        for (Fruit fruit : listObj) {
             double weightFruit = fruit.getWeight().doubleValue();
             sum += weightFruit;
         }
@@ -37,9 +37,15 @@ public class Box <T> {
         listObj.add(t);
     }
 
-    public void getAllFromBox(List<? extends T> box) {
-        listObj.addAll(box);
-        box.clear();
+    public void getAllFromBox(Box<? super T> box) {
+
+        if (this == box) {
+            System.out.println("Нельзя пересыпать в эту же коробку.");
+        }
+        else {
+            box.getListObj().addAll(0, this.listObj);
+            this.listObj.clear();
+        }
     }
 
     @Override

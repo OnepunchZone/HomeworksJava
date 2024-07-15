@@ -39,8 +39,9 @@ public class MainApp {
         System.out.println(appleBox.compareBox(fruitBox));
         System.out.println();
 
-        fruitBox.getAllFromBox(appleBox.getListObj());
-        fruitBox.getAllFromBox(orangeBox.getListObj());
+        appleBox.getAllFromBox(fruitBox);
+        orangeBox.getAllFromBox(fruitBox);
+        fruitBox.getAllFromBox(fruitBox);
         printBoxes(fruitBox, appleBox, orangeBox);
 
         appleBox.addFruit(new Apple(1));
