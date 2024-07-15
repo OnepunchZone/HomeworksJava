@@ -7,13 +7,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Main {
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println(compareQuery(readFile()));
+        compareQuery(readFile());
     }
 
     public static String readFile() {
+        System.out.println("Введите имя файла для чтения :");
         String fileName = sc.nextLine();
         String data = null;
 
@@ -27,7 +28,8 @@ public class Main {
         return data;
     }
 
-    public static int compareQuery(String data) {
+    public static void compareQuery(String data) {
+        System.out.println("Введите символы для поиска :");
         String query = sc.nextLine();
         String str = "";
         int count = 0;
@@ -44,6 +46,6 @@ public class Main {
                 str = "";
             }
         }
-        return count;
+        System.out.println(count);
     }
 }
