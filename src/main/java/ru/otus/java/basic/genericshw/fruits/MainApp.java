@@ -3,8 +3,6 @@ package ru.otus.java.basic.genericshw.fruits;
 import ru.otus.java.basic.genericshw.Box;
 import ru.otus.java.basic.genericshw.Fruit;
 
-import java.util.List;
-
 public class MainApp {
     public static void main(String[] args) {
         createAndPrint();
@@ -48,6 +46,7 @@ public class MainApp {
         appleBox.addFruit(new Apple(2));
         orangeBox.addFruit(new Orange(3));
         orangeBox.addFruit(new Orange(4));
+        fruitBox.addFruit(new Fruit<>(10));
         printBoxes(fruitBox, appleBox, orangeBox);
     }
 

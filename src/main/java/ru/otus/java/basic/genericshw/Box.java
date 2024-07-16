@@ -1,11 +1,15 @@
 package ru.otus.java.basic.genericshw;
 
 
+import org.jetbrains.annotations.NotNull;
+import ru.otus.java.basic.genericshw.fruits.Apple;
+import ru.otus.java.basic.genericshw.fruits.Orange;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Box <T extends Fruit> {
+public class Box <T extends Fruit> implements Comparable<T> {
     private List<T> listObj;
 
     public Box(T... arrObj) {
@@ -34,7 +38,12 @@ public class Box <T extends Fruit> {
     }
 
     public void addFruit(T t) {
-        listObj.add(t);
+
+        if (this.compareTo(t) == 0) {
+            System.out.println("Нельзя добавить класс Fruit. Только Apple или Orange");
+        } else {
+            listObj.add(t);
+        }
     }
 
     public void getAllFromBox(Box<? super T> box) {
@@ -46,6 +55,16 @@ public class Box <T extends Fruit> {
             box.getListObj().addAll(0, this.listObj);
             this.listObj.clear();
         }
+    }
+
+    @Override
+    public int compareTo(@NotNull T o) {
+        if (o instanceof Apple) {
+            return 1;
+        } else if (o instanceof Orange) {
+            return -1;
+        }
+        return 0;
     }
 
     @Override
