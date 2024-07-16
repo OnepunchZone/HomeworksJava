@@ -2,8 +2,6 @@ package ru.otus.java.basic.multithreading2;
 
 public class MainThreads {
     private final Object monitor1 = new Object();
-    private final Object monitor2 = new Object();
-    private final Object monitor3 = new Object();
 
     public static void main(String[] args) {
 
@@ -43,12 +41,6 @@ public class MainThreads {
                 System.out.print(letter);
                 Thread.sleep(500);
             }
-
-            synchronized (monitor2) {
-                synchronized (monitor3) {
-                    Thread.sleep(200);
-                }
-            }
         }
     }
 
@@ -58,12 +50,6 @@ public class MainThreads {
                 System.out.print(letter);
                 Thread.sleep(550);
             }
-
-            synchronized (monitor2) {
-                synchronized (monitor3) {
-                    Thread.sleep(200);
-                }
-            }
         }
     }
 
@@ -72,12 +58,6 @@ public class MainThreads {
             for (int i = 0; i < 5; i++) {
                 System.out.print(letter);
                 Thread.sleep(600);
-            }
-
-            synchronized (monitor2) {
-                synchronized (monitor3) {
-                    Thread.sleep(200);
-                }
             }
         }
     }
