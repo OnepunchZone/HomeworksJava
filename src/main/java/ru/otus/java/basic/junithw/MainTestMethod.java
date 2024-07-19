@@ -4,30 +4,28 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class MainTestMethod {
+    public static void main(String[] args) {
+        int[] arr = {2, 3, 4, 5};
+        System.out.println(Arrays.toString(afterOne(arr)));
+    }
 
-    public int[] afterOne(int[] arr) {
-        String str = "";
+    public static int[] afterOne(int[] arr) {
+        int[] newArr;
+        int index = 0;
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == 1) {
-                if ((i+1) < arr.length && arr[i+1] != 1) {
-                    str += arr[i + 1];
-                }
+                index = i + 1;
             }
         }
 
-        int[] newArr = new int[str.toCharArray().length];
-        if (newArr.length == 0) {
-            throw new RuntimeException("Нет 1. Массив пустой.") ;
-        }
-        int count = 0;
+        newArr = Arrays.copyOfRange(arr, index, arr.length);
 
-        for (Character chr : str.toCharArray()) {
-            newArr[count] = Integer.parseInt(String.valueOf(chr));
-            count ++;
+        if (index == 0 || newArr.length == 0) {
+            throw new RuntimeException("Нет 1.") ;
+        } else {
+            return newArr;
         }
-
-        return newArr;
     }
 
     public boolean justOneAndTow(int[] arr) {

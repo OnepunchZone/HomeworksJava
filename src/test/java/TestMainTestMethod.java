@@ -43,13 +43,13 @@ public class TestMainTestMethod {
     public void testAfterOne() {
         Assertions.assertAll(
                 () -> {
-                    Assertions.assertArrayEquals(new int[]{2, 2}, test.afterOne(new int[]{1, 2, 3, 1, 2}));
+                    Assertions.assertArrayEquals(new int[]{3, 3}, test.afterOne(new int[]{2, 1, 2, 1, 3, 3}));
                 },
                 () -> {
-                    Assertions.assertArrayEquals(new int[]{3, 2}, test.afterOne(new int[]{1, 1, 3, 1, 1, 1, 2}));
+                    Assertions.assertArrayEquals(new int[]{2}, test.afterOne(new int[]{1, 1, 3, 1, 1, 1, 2}));
                 },
                 () -> {
-                    Assertions.assertArrayEquals(new int[]{3}, test.afterOne(new int[]{1, 1, 3, 1, 1}));
+                    Assertions.assertArrayEquals(new int[]{12, 11}, test.afterOne(new int[]{1, 1, 3, 1, 1, 12, 11}));
                 },
                 () -> {
                     Assertions.assertThrows(RuntimeException.class, () -> test.afterOne(new int[]{}));
