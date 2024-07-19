@@ -3,8 +3,6 @@ package ru.otus.java.basic.genericshw.fruits;
 import ru.otus.java.basic.genericshw.Box;
 import ru.otus.java.basic.genericshw.Fruit;
 
-import java.util.List;
-
 public class MainApp {
     public static void main(String[] args) {
         createAndPrint();
@@ -39,14 +37,16 @@ public class MainApp {
         System.out.println(appleBox.compareBox(fruitBox));
         System.out.println();
 
-        fruitBox.getAllFromBox(appleBox.getListObj());
-        fruitBox.getAllFromBox(orangeBox.getListObj());
+        appleBox.getAllFromBox(fruitBox);
+        orangeBox.getAllFromBox(fruitBox);
+        fruitBox.getAllFromBox(fruitBox);
         printBoxes(fruitBox, appleBox, orangeBox);
 
         appleBox.addFruit(new Apple(1));
         appleBox.addFruit(new Apple(2));
         orangeBox.addFruit(new Orange(3));
         orangeBox.addFruit(new Orange(4));
+        fruitBox.addFruit(new Fruit<>(10));
         printBoxes(fruitBox, appleBox, orangeBox);
     }
 
